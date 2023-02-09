@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,26 +11,36 @@ import 'package:movies_app/screens/movie_details_screen/movie_details_view_model
 import 'package:movies_app/screens/search_screen/search_screen_view_model.dart';
 import 'package:movies_app/shared/network/remote/dio.dart';
 
-void main() {
+import 'firebase_options.dart';
+
+void main() async {
   DioHelper.init();
   Bloc.observer = MyBlocObserver();
-  runApp(MultiBlocProvider(providers: [
-    BlocProvider(
-      create: (context) => HomeViewModel()
-        ..getRecommendedMovies()
-        ..getPopularMovies()
-        ..getNewReleaseMovies(),
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => HomeViewModel()
+            ..getRecommendedMovies()
+            ..getPopularMovies()
+            ..getNewReleaseMovies(),
+        ),
+        BlocProvider(
+          create: (context) => SearchViewModel(),
+        ),
+        BlocProvider(
+          create: (context) => BrowseViewModel()..getCategories(),
+        ),
+        BlocProvider(
+          create: (context) => MovieDetailsViewModel(),
+        ),
+      ],
+      child: const MyApp(),
     ),
-    BlocProvider(
-      create: (context) => SearchViewModel(),
-    ),
-    BlocProvider(
-      create: (context) => BrowseViewModel()..getCategories(),
-    ),
-    BlocProvider(
-      create: (context) => MovieDetailsViewModel(),
-    ),
-  ], child: const MyApp()));
+  );
 }
 
 class MyApp extends StatelessWidget {
