@@ -4,7 +4,7 @@ import 'package:movies_app/cubit/cubit_states.dart';
 import 'package:movies_app/shared/constants.dart';
 import 'package:movies_app/shared/network/remote/dio.dart';
 
-import '../../models/MovieModel.dart';
+import '../../models/movie_model.dart';
 
 class HomeViewModel extends BaseViewModel {
   static HomeViewModel get(context) => BlocProvider.of(context);

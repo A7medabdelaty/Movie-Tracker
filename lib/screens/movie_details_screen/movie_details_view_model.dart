@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app/base.dart';
 import 'package:movies_app/cubit/cubit_states.dart';
-import 'package:movies_app/models/MovieModel.dart';
+import 'package:movies_app/models/movie_model.dart';
 import 'package:movies_app/shared/constants.dart';
 import 'package:movies_app/shared/network/remote/dio.dart';
 

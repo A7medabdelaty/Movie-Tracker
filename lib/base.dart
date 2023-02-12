@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/cubit/cubit_states.dart';
 import 'package:movies_app/screens/movie_details_screen/movie_details_screen.dart';
 
-import 'models/MovieModel.dart';
+import 'models/movie_model.dart';
 
 abstract class BaseNavigator {
   void openMovieScreen(Results movie);

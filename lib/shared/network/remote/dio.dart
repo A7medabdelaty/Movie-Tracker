@@ -1,10 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:movies_app/models/CategoryModel.dart';
-import 'package:movies_app/models/MovieDetailsModel.dart';
 import 'package:movies_app/shared/constants.dart';
-
-import '../../../models/MovieModel.dart';
-
 class DioHelper {
   static Dio? dio;
 

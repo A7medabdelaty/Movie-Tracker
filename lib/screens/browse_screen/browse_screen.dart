@@ -7,6 +7,7 @@ import 'package:movies_app/cubit/cubit_states.dart';
 import 'package:movies_app/models/CategoryModel.dart';
 import 'package:movies_app/screens/browse_screen/browse_navigator.dart';
 import 'package:movies_app/screens/browse_screen/browse_view_model.dart';
+import 'package:movies_app/screens/browse_screen/movies_list_screen.dart';
 
 class BrowseScreen extends StatefulWidget {
   const BrowseScreen({Key? key}) : super(key: key);
@@ -56,8 +57,16 @@ class _BrowseScreenState extends BaseView<BrowseScreen, BrowseViewModel>
                             crossAxisCount: 2,
                             mainAxisSpacing: 15,
                             crossAxisSpacing: 15),
-                    itemBuilder: (context, index) =>
-                        categoryCard(cubit.categories[index]),
+                    itemBuilder: (context, index) => InkWell(
+                        onTap: () {
+                          cubit.getMoviesByGenres(cubit.categories[index]);
+                          Navigator.pushNamed(
+                            context,
+                            BrowseMovies.routeName,
+                            arguments: cubit.categories[index]
+                          );
+                        },
+                        child: categoryCard(cubit.categories[index])),
                     itemCount: cubit.categories.length,
                   ),
                 ),
@@ -75,8 +84,7 @@ class _BrowseScreenState extends BaseView<BrowseScreen, BrowseViewModel>
   Widget categoryCard(Genres category) {
     return Container(
       clipBehavior: Clip.antiAliasWithSaveLayer,
-      decoration:
-          BoxDecoration(borderRadius: BorderRadius.circular(7)),
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(7)),
       child: Stack(
         alignment: Alignment.center,
         children: [

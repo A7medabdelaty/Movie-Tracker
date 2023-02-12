@@ -1,6 +1,7 @@
 class MovieModel {
   MovieModel({
-      this.results,});
+    this.results,
+  });
 
   MovieModel.fromJson(dynamic json) {
     if (json['results'] != null) {
@@ -10,6 +11,7 @@ class MovieModel {
       });
     }
   }
+
   List<Results>? results;
 
   Map<String, dynamic> toJson() {
@@ -19,25 +21,24 @@ class MovieModel {
     }
     return map;
   }
-
 }
 
 class Results {
   Results({
-      this.adult, 
-      this.backdropPath, 
-      this.genreIds,
-      this.id,
-      this.originalLanguage, 
-      this.originalTitle, 
-      this.overview, 
-      this.popularity, 
-      this.posterPath, 
-      this.releaseDate, 
-      this.title, 
-      this.video, 
-      this.voteAverage, 
-      this.voteCount,});
+    this.adult,
+    this.backdropPath,
+    this.genreIds,
+    this.id,
+    this.originalLanguage,
+    this.originalTitle,
+    this.overview,
+    this.popularity,
+    this.posterPath,
+    this.releaseDate,
+    this.title,
+    this.video,
+    this.voteAverage,
+  });
 
   Results.fromJson(dynamic json) {
     adult = json['adult'];
@@ -54,7 +55,10 @@ class Results {
     video = json['video'];
     voteAverage = json['vote_average'].toString();
     voteCount = json['vote_count'];
+    inWatchList = json['in_watch_list'] ?? false;
   }
+
+  bool? inWatchList = false;
   bool? adult;
   String? backdropPath;
   List<int>? genreIds;
@@ -86,7 +90,7 @@ class Results {
     map['video'] = video;
     map['vote_average'] = voteAverage;
     map['vote_count'] = voteCount;
+    map['in_watch_list'] = inWatchList;
     return map;
   }
-
 }
