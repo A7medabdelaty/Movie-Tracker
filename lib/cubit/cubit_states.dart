@@ -34,6 +34,12 @@ class GetCategoriesSuccessState extends MovieStates {}
 
 class GetCategoriesErrorState extends MovieStates {}
 
+class GetGenresMoviesLoadingState extends MovieStates {}
+
+class GetGenresMoviesSuccessState extends MovieStates {}
+
+class GetGenresMoviesErrorState extends MovieStates {}
+
 class GetMovieDetailsLoadingState extends MovieStates {}
 
 class GetMovieDetailsSuccessState extends MovieStates {}
@@ -45,3 +51,23 @@ class GetSimilarMoviesLoadingState extends MovieStates {}
 class GetSimilarMoviesSuccessState extends MovieStates {}
 
 class GetSimilarMoviesErrorState extends MovieStates {}
+
+class AddMovieToWatchListLoadingState extends MovieStates {}
+
+class AddMovieToWatchListSuccessState extends MovieStates {}
+
+class AddMovieToWatchListErrorState extends MovieStates {}
+
+class GetWatchListLoadingState extends MovieStates {}
+
+class GetWatchListSuccessState extends MovieStates {}
+
+class GetWatchListErrorState extends MovieStates {}
+
+class RemoveMovieFromWatchListLoadingState extends MovieStates {}
+
+class RemoveMovieFromWatchListSuccessState extends MovieStates {}
+
+class RemoveMovieFromWatchListErrorState extends MovieStates {}
+
+class ChangeIconState extends MovieStates {}

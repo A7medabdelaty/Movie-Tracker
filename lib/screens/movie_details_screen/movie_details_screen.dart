@@ -5,11 +5,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app/base.dart';
 import 'package:movies_app/cubit/cubit_states.dart';
-import 'package:movies_app/models/MovieModel.dart';
+import 'package:movies_app/models/movie_model.dart';
 import 'package:movies_app/screens/movie_details_screen/movie_details_navigator.dart';
 import 'package:movies_app/screens/movie_details_screen/movie_details_view_model.dart';
 import 'package:movies_app/shared/constants.dart';
 
+import '../../cubit/cubit.dart';
 import '../../shared/componets/widgets.dart';
 
 class MovieDetailsScreen extends StatefulWidget {
@@ -31,6 +32,7 @@ class _MovieDetailsScreenState
 
   @override
   Widget build(BuildContext context) {
+    MovieCubit mainCubit = MovieCubit.get(context);
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle.light.copyWith(
         statusBarColor: const Color(0xff1A1A1A),
@@ -129,7 +131,15 @@ class _MovieDetailsScreenState
                                             Image.network(
                                               '$BASE_IMAGE_URL${snapshot.data?.posterPath}',
                                             ),
-                                            bookMarkIcon(),
+                                            InkWell(
+                                                onTap: () {
+                                                  mainCubit
+                                                      .onBookMarkTab(movie);
+                                                  setState(() {});
+                                                },
+                                                child: movie.inWatchList!
+                                                    ? activeBookMarkIcon()
+                                                    : bookMarkIcon()),
                                           ],
                                         ),
                                       ),
@@ -242,7 +252,7 @@ class _MovieDetailsScreenState
                                           openMovieScreen(
                                               cubit.similarMovies[index]);
                                         },
-                                        child: sliderItem(context,
+                                        child: SliderItem(
                                             cubit.similarMovies[index]),
                                       ),
                                       separatorBuilder: (context, index) =>

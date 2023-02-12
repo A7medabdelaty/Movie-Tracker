@@ -3,7 +3,7 @@ import 'package:movies_app/base.dart';
 import 'package:movies_app/shared/constants.dart';
 
 import '../../cubit/cubit_states.dart';
-import '../../models/MovieModel.dart';
+import '../../models/movie_model.dart';
 import '../../shared/network/remote/dio.dart';
 
 class SearchViewModel extends BaseViewModel {
@@ -20,6 +20,7 @@ class SearchViewModel extends BaseViewModel {
     emit(SearchForMovieLoadingState());
     DioHelper.getData(url: SEARCH_END_POINT, query: {
       'api_key': API_KEY,
+
       'query': text,
     }).then((value) {
       searchList = MovieModel.fromJson(value?.data).results!;

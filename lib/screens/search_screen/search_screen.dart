@@ -25,6 +25,7 @@ class _SearchScreenState extends BaseView<SearchScreen, SearchViewModel>
   @override
   Widget build(BuildContext context) {
     TextEditingController searchController = TextEditingController();
+    searchController.clear();
     return BlocConsumer<SearchViewModel, MovieStates>(
       builder: (context, state) {
         SearchViewModel cubit = SearchViewModel.get(context);

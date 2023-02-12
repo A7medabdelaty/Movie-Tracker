@@ -7,6 +7,7 @@ import 'package:movies_app/cubit/cubit_states.dart';
 import 'package:movies_app/screens/home_secreen/carusel_slider.dart';
 import 'package:movies_app/screens/home_secreen/home_navigator.dart';
 import 'package:movies_app/screens/home_secreen/home_view_model.dart';
+import 'package:movies_app/shared/styles.dart';
 
 import '../../shared/componets/widgets.dart';
 
@@ -56,7 +57,7 @@ class _HomeScreenState extends BaseView<HomeScreen, HomeViewModel>
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                 width: double.infinity,
-                color: const Color(0xff282A28),
+                color: MAIN_DARK_COLOR,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -78,8 +79,8 @@ class _HomeScreenState extends BaseView<HomeScreen, HomeViewModel>
                             onTap: () {
                               openMovieScreen(cubit.newReleasesMovies[index]);
                             },
-                            child: newReleaseItem(
-                                context, cubit.newReleasesMovies[index]),
+                            child:
+                                NewReleaseItem(cubit.newReleasesMovies[index]),
                           ),
                           itemCount: cubit.newReleasesMovies.length,
                           separatorBuilder: (context, index) => const SizedBox(
@@ -106,7 +107,7 @@ class _HomeScreenState extends BaseView<HomeScreen, HomeViewModel>
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                 width: double.infinity,
-                color: const Color(0xff282A28),
+                color: MAIN_DARK_COLOR,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -128,8 +129,7 @@ class _HomeScreenState extends BaseView<HomeScreen, HomeViewModel>
                             onTap: () {
                               openMovieScreen(cubit.recommendedMovies[index]);
                             },
-                            child: sliderItem(
-                                context, cubit.recommendedMovies[index]),
+                            child: SliderItem(cubit.recommendedMovies[index]),
                           ),
                           separatorBuilder: (context, index) => const SizedBox(
                             width: 7,
